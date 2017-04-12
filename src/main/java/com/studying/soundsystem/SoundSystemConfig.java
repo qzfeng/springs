@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Import;
 /**
  * Created by fengqz on 2017-4-6.
  */
-@Configuration
+//@Configuration
 // 自动扫描组件
 //@ComponentScan(basePackages = "com.studying.soundsystem")
 @Import({CDConfig.class,MediaConfig.class})

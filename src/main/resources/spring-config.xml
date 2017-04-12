@@ -3,14 +3,34 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:c="http://www.springframework.org/schema/c"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-    <!--<context:annotation-config />-->
-    <!--<context:component-scan base-package="com.studying"/>-->
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!--<bean id="sgtPeppers" class="com.studying.soundsystem.SgtPeppers"/>-->
-    <!--<bean id="cdPlayer" class="com.studying.soundsystem.CDPlayer" c:compactDisc-ref="sgtPeppers"/>-->
+    <context:annotation-config />
+    <context:component-scan base-package="com.studying"/>
+
+    <bean id="sgtPeppers" class="com.studying.soundsystem.SgtPeppers"/>
+    <bean id="cdPlayer" class="com.studying.soundsystem.CDPlayer" c:compactDisc-ref="sgtPeppers"/>
 
     <!--<beans profile="dev"></beans>-->
     <!--<beans profile="test"></beans>-->
     <!--<beans profile="prod"></beans>-->
+
+    <aop:aspectj-autoproxy/>
+    <bean id="myAspect" class="com.studying.aspect.Aspect"/>
+    <aop:config>
+        <!--<aop:advisor advice-ref=""/>-->
+        <aop:aspect ref="myAspect">
+            <aop:pointcut id="ap" expression="execution(* com.studying.soundsystem.*.play(..)) and args(Integer)" />
+            <!--<aop:pointcut id="ap" expression="execution(* com.studying.soundsystem.*.play(..)) and bean(cdPlayer)" />-->
+            <!--<aop:pointcut id="ap" expression="execution(* com.studying.soundsystem.*.play(..)) and within(com.studying.soundsystem.CDPlayer)" />-->
+            <!--<aop:before method="doBefore" pointcut-ref="ap"/>-->
+            <aop:around pointcut-ref="ap" method="doAround" />
+        </aop:aspect>
+    </aop:config>
 </beans>
