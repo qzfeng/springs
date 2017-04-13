@@ -12,7 +12,7 @@
        http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:annotation-config />
-    <context:component-scan base-package="com.studying"/>
+    <!--<context:component-scan base-package="com.studying"/>-->
 
     <bean id="sgtPeppers" class="com.studying.soundsystem.SgtPeppers"/>
     <bean id="cdPlayer" class="com.studying.soundsystem.CDPlayer" c:compactDisc-ref="sgtPeppers"/>

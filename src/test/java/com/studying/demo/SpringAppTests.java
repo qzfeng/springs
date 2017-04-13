@@ -1,6 +1,5 @@
 package com.studying.demo;
 
-import com.studying.demo.HelloService;
 import junit.framework.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +18,7 @@ public class SpringAppTests {
 
     @Test
     public void testSayHello() {
-        Assert.assertEquals("Hello world!", helloService.sayHello());
+        String actual = helloService.sayHello();
+        Assert.assertEquals("Hello world!", actual);
     }
 }

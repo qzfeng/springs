@@ -1,10 +1,10 @@
 package com.studying.demo;
 
-import org.springframework.stereotype.Component;
+/**
+ * Created by fengqz on 2017-4-12.
+ */
+public interface HelloService {
+    String sayHello();
 
-@Component
-public class HelloService {
-    public String sayHello() {
-        return "Hello world!";
-    }
+    boolean sayTrue();
 }
